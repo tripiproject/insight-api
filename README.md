@@ -8,9 +8,9 @@
 ## Table of Contents
 * [Getting Started](#getting-started)
 * [DGP info](#dgpinfo)
-* [QRC20 info](#qrc20-info)
-* [QRC20 transfers](#qrc20-transfers)
-* [QRC20 balances](#qrc20-balances)
+* [TRC20 info](#trc20-info)
+* [TRC20 transfers](#trc20-transfers)
+* [TRC20 balances](#trc20-balances)
 
 ### Statistics
 * [Total 24h](#total-24h-statistic)
@@ -21,9 +21,9 @@
 * [Stake](#stake-statistic)
 * [Total Supply](#total-supply-statistic)
 
-A QTUM blockchain REST and web socket API service for [Qtumcore Node](https://github.com/qtumproject/qtumcore-node).
+A TRIPI blockchain REST and web socket API service for [Tripicore Node](https://github.com/tripiproject/tripicore-node).
 
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/qtumproject/qtum-explorer.
+This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/tripiproject/tripi-explorer.
 
 ## Getting Started
 
@@ -35,37 +35,37 @@ This is a backend-only service. If you're looking for the web frontend applicati
     ```  
 2. Install mongo https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/  
 
-3. Install qtum-bitcore https://github.com/qtumproject/qtum-bitcore - with ZMQ ! 
+3. Install tripi-bitcore https://github.com/tripiproject/tripi-bitcore - with ZMQ ! 
 
     ```bash
     # with ZMQ
     sudo apt-get install libzmq3-dev 
     ```  
-4. Install qtumcore-node  
+4. Install tripicore-node  
 
     ```bash
-    npm i https://github.com/qtumproject/qtumcore-node.git#master
+    npm i https://github.com/tripiproject/tripicore-node.git#master
 
-    $(npm bin)/qtumcore-node create mynode
+    $(npm bin)/tripicore-node create mynode
 
     cd mynode
 
-    $(npm bin)/qtumcore-node install https://github.com/qtumproject/insight-api.git#master
+    $(npm bin)/tripicore-node install https://github.com/tripiproject/insight-api.git#master
     ```  
-5. Edit qtumcore-node.json  
+5. Edit tripicore-node.json  
 
     ```json
     {
       "network": "livenet",
       "port": 3001,
       "services": [
-        "qtumd",
-        "qtum-insight-api",
+        "tripid",
+        "tripi-insight-api",
         "web"
       ],
       "servicesConfig": {
-        "qtum-insight-api": {
-          "routePrefix": "qtum-insight-api",
+        "tripi-insight-api": {
+          "routePrefix": "tripi-insight-api",
           "rateLimiterOptions": {
           "whitelist": [
              "123.456.12.34",
@@ -79,7 +79,7 @@ This is a backend-only service. If you're looking for the web frontend applicati
           "db": {
             "host": "127.0.0.1",
             "port": "27017",
-            "database": "qtum-api-livenet",
+            "database": "tripi-api-livenet",
             "user": "",
             "password": ""
           },
@@ -87,16 +87,16 @@ This is a backend-only service. If you're looking for the web frontend applicati
             "updateFromBlockHeight": 0
           }
         },
-        "qtumd": {
+        "tripid": {
           "spawn": {
-        	  "datadir": "/home/user/.qtum",
-            "exec": "/home/user/qtum-bitcore/src/qtumd"
+        	  "datadir": "/home/user/.tripi",
+            "exec": "/home/user/tripi-bitcore/src/tripid"
           }
         }
       }
     }
     ```  
-6. Edit qtum.conf  
+6. Edit tripi.conf  
 
     ```
     server=1
@@ -119,28 +119,28 @@ This is a backend-only service. If you're looking for the web frontend applicati
 7. Run Node  
 
     ```
-    $(npm bin)/qtumcore-node start
+    $(npm bin)/tripicore-node start
     ```  
 
-8. The API endpoints will be available by default at: `http://localhost:3001/qtum-insight-api/`  
+8. The API endpoints will be available by default at: `http://localhost:3001/tripi-insight-api/`  
 
 ## Add-on Services
 
-There add-on service available to extend the functionality of Qtumcore:
+There add-on service available to extend the functionality of Tripicore:
 
-- [QTUM Explorer](https://github.com/qtumproject/qtum-explorer)
+- [TRIPI Explorer](https://github.com/tripiproject/tripi-explorer)
 
 ## Prerequisites
 
-**Note:** You can use an existing QTUM data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `qtum.conf`, as well as a few other additional fields.
+**Note:** You can use an existing TRIPI data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `tripi.conf`, as well as a few other additional fields.
 
 
 ## Query Rate Limit
 
-To protect the server, qtum-insight-api has a built it query rate limiter. It can be configurable in `qtumcore-node.json` with:
+To protect the server, tripi-insight-api has a built it query rate limiter. It can be configurable in `tripicore-node.json` with:
 ``` json
   "servicesConfig": {
-    "qtum-insight-api": {
+    "tripi-insight-api": {
       "rateLimiterOptions": {
         "whitelist": ["::ffff:127.0.0.1"]
       }
@@ -151,17 +151,17 @@ To protect the server, qtum-insight-api has a built it query rate limiter. It ca
 Or disabled entirely with:
 ``` json
   "servicesConfig": {
-    "qtum-insight-api": {
+    "tripi-insight-api": {
       "disableRateLimiter": true
     }
   }
   ```
   
-**Note:** `routePrefix` can be configurable in `qtumcore-node.json` with:
+**Note:** `routePrefix` can be configurable in `tripicore-node.json` with:
 
 ``` json
   "servicesConfig": {
-    "qtum-insight-api": {
+    "tripi-insight-api": {
       "routePrefix": "insight-api",
     }
   }
@@ -698,7 +698,7 @@ POST response:
   /insight-api/peer
 ```
 
-### Status of the QTUM Network
+### Status of the TRIPI Network
 ```
   /insight-api/status?q=xxx
 ```
@@ -734,22 +734,22 @@ resp:
 }
 ```
 
-### QRC20 info
+### TRC20 info
 ```
   /insight-api/erc20/:contractAddress
   > DEPRECATED
 ```
     
 ```
-  /insight-api/qrc20/:contractAddress
+  /insight-api/trc20/:contractAddress
 ```
 
-### QRC20 transfers
+### TRC20 transfers
 ```
   /insight-api/erc20/:contractAddress/transfers
 ```
 
-### QRC20 balances
+### TRC20 balances
 ```
   /insight-api/erc20/:contractAddress/balances
 ```
