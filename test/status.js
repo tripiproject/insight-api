@@ -31,7 +31,7 @@ describe('Status', function() {
     var node = {
       services: {
         tripid: {
-          getBlockchainInfo: sinon.stub().callsArgWith(0, null, info),
+          getBlockChainInfo: sinon.stub().callsArgWith(0, null, info),
           getBestBlockHash: sinon.stub().callsArgWith(0, null, outSetInfo.bestblock),
           tiphash: outSetInfo.bestblock
         }
@@ -40,7 +40,7 @@ describe('Status', function() {
 
     var status = new StatusController(node);
 
-    it('getBlockchainInfo', function(done) {
+    it('getBlockChainInfo', function(done) {
       var req = {
         query: {}
       };

@@ -73,7 +73,7 @@ AddressBalanceService.prototype.updateRicherThanCache = function (next) {
         };
 
     return async.waterfall([function (callback) {
-        return self.marketsService.getBlockchainInfo(function (err, info) {
+        return self.marketsService.getBlockChainInfo(function (err, info) {
 
             if (err) {
                 return callback(err);
@@ -179,7 +179,7 @@ AddressBalanceService.prototype.updateCacheIntervals = function (next) {
     }, function (intervals, callback) {
 
         return async.eachSeries(intervals, function (interval, callback) {
-            return self.addressBalanceRepository.getBlockchainInfoByInterval(interval.min, interval.max, function (err, info) {
+            return self.addressBalanceRepository.getBlockChainInfoByInterval(interval.min, interval.max, function (err, info) {
 
                 if (err) {
                     return callback(err);
@@ -284,11 +284,11 @@ AddressBalanceService.prototype.start = function (next) {
 
         })
     },function (callback) {
-        return self.node.getBlockchainInfo(function (err, data) {
+        return self.node.getBlockChainInfo(function (err, data) {
 
             if (err) {
 
-                self.common.log.error('[AddressBalanceService] getBlockchainInfo Error', err);
+                self.common.log.error('[AddressBalanceService] getBlockChainInfo Error', err);
 
                 return callback(err);
             }
