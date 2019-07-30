@@ -513,7 +513,7 @@ AddressBalanceService.prototype.processBlock = function (blockHeight, next) {
                         if (err) {
                             return callback(err)
                         }
-                        this.common.log.info('[AddressBalanceService] BigNumber Balance error expectation...', result.balance);
+                        //this.common.log.info('[AddressBalanceService] BigNumber Balance error expectation...', result.balance);
                         var balanceSat = new BigNumber(result.balance.toString());
                         dataFlow.balance = balanceSat.dividedBy(1e8).toNumber();
 
