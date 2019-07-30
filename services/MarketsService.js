@@ -66,7 +66,7 @@ MarketsService.prototype._updateInfo = function() {
 
 };
 
-MarketsService.prototype.getInfo = function(next) {
+MarketsService.prototype.getBlockchainInfo = function(next) {
     return next(null, this.info);
 };
 

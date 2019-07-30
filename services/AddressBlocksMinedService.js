@@ -61,11 +61,11 @@ AddressBlocksMinedService.prototype.start = function (next) {
 
         })
     },function (callback) {
-        return self.node.getInfo(function (err, data) {
+        return self.node.getBlockchainInfo(function (err, data) {
 
             if (err) {
 
-                self.common.log.error('[AddressBlocksMinedService] getInfo Error', err);
+                self.common.log.error('[AddressBlocksMinedService] getBlockchainInfo Error', err);
 
                 return callback(err);
             }

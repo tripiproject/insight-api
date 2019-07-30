@@ -710,7 +710,7 @@ POST response:
 
 Where "xxx" can be:
 
- * getInfo
+ * getBlockchainInfo
  * getDifficulty
  * getBestBlockHash
  * getLastBlockHash

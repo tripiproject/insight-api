@@ -35,7 +35,7 @@ AddressBalanceRepository.prototype.getCountAddressesGreaterThan = function (min,
     });
 };
 
-AddressBalanceRepository.prototype.getInfoByInterval = function (min, max, next) {
+AddressBalanceRepository.prototype.getBlockchainInfoByInterval = function (min, max, next) {
     return AddressBalance.aggregate([
         { $match: { balance: {$gt: min, $lte: max} } },
         { $group: {
